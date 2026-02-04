@@ -29,20 +29,20 @@ public class TransactionProxy implements InvocationHandler {
         }
 
         String methodName = target.getClass().getSimpleName() + "." + method.getName();
-        System.out.println("Iniciando execução do método " + methodName);
+        System.out.println(">> iniciando execução do método " + methodName);
 
         try {
             Object result = method.invoke(target, args);
-            System.out.println("Finalizando execução do método " + methodName + " com sucesso");
+            System.out.println(">> finalizando execução do método " + methodName + " com sucesso");
             return result;
         } catch (InvocationTargetException e) {
             // Desembrulha a exceção real lançada pelo método original
             Throwable targetException = e.getTargetException();
-            System.out.println("Finalizando execução do método " + methodName + " com erro: " + targetException.getMessage());
+            System.out.println(">> finalizando execução do método " + methodName + " com erro: " + targetException.getMessage());
             throw targetException;
         } catch (Exception e) {
             // Captura outros erros de reflexão inesperados
-            System.out.println("Finalizando execução do método " + methodName + " com erro inesperado: " + e.getMessage());
+            System.out.println(">> finalizando execução do método " + methodName + " com erro inesperado: " + e.getMessage());
             throw e;
         }
     }

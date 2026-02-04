@@ -6,6 +6,8 @@ import org.example.notification.UseCaseNotification;
 import org.example.transaction.TransactionProxy;
 import org.example.transaction.UserService;
 import org.example.transaction.UserServiceImpl;
+import org.example.transaction.factory.ServiceFactory;
+import org.example.transaction.factory.TransactionalServiceFactory;
 
 import java.util.Random;
 import java.util.UUID;
@@ -29,23 +31,21 @@ public class Main {
 //            System.out.println();
 //        }, 1, 1, TimeUnit.SECONDS);
 
-        // Cria a instância real do serviço
-        UserService realUserService = new UserServiceImpl();
+        // o cliente usa a Factory para obter o serviço
+        ServiceFactory factory = new TransactionalServiceFactory();
+        UserService userService = factory.createUserService();
 
-        // Cria o proxy transacional para o serviço
-        UserService transactionalUserService = (UserService) TransactionProxy.newInstance(realUserService);
-
-        // Chama o método que deve executar com sucesso
-        System.out.println("--- Chamando createUser (esperado sucesso) ---");
-        transactionalUserService.createUser("Alice");
+        // chama o método que deve executar com sucesso
+        System.out.println("\n\n--- chamando createUser (esperado sucesso) ---");
+        userService.createUser("Michael Schumacher");
         System.out.println();
 
-        // Chama o método que deve lançar uma exceção
-        System.out.println("--- Chamando deleteUser (esperado erro) ---");
+        // chama o método que deve lançar uma exceção
+        System.out.println("--- chamando deleteUser (esperado erro) ---");
         try {
-            transactionalUserService.deleteUser("Bob");
+            userService.deleteUser("Fernando Alonso");
         } catch (Exception e) {
-            // A exceção é esperada, apenas para demonstrar o fluxo de erro.
+            // a exceção é esperada
         }
     }
 
