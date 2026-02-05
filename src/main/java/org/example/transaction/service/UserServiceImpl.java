@@ -1,4 +1,6 @@
-package org.example.transaction;
+package org.example.transaction.service;
+
+import org.example.transaction.Transaction;
 
 public class UserServiceImpl implements UserService {
 

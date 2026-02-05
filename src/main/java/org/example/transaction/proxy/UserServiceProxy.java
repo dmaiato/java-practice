@@ -1,7 +1,7 @@
 package org.example.transaction.proxy;
 
 import org.example.transaction.Transaction;
-import org.example.transaction.UserService;
+import org.example.transaction.service.UserService;
 
 import java.lang.reflect.Method;
 

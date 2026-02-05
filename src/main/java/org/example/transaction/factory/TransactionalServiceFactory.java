@@ -1,8 +1,8 @@
 package org.example.transaction.factory;
 
 import org.example.transaction.proxy.TransactionProxy;
-import org.example.transaction.UserService;
-import org.example.transaction.UserServiceImpl;
+import org.example.transaction.service.UserService;
+import org.example.transaction.service.UserServiceImpl;
 import org.example.transaction.proxy.ProxyType;
 import org.example.transaction.proxy.UserServiceProxy;
 
